@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from models import User, db
 
-# Blueprint 생성 (이름을 route_users_bp로 변경)
+# Blueprint 생성
 route_users_bp = Blueprint('route_users', __name__)
 
 # 사용자 추가 (POST)

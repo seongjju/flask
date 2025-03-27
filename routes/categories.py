@@ -1,14 +1,13 @@
 from flask import Blueprint, jsonify, request
 from models import Category, db
 
-# Blueprint 생성 (이름을 route_categories_bp로 변경)
+# Blueprint 생성
 route_categories_bp = Blueprint('route_categories', __name__)
 
 # 카테고리 추가 (POST)
 @route_categories_bp.route('/add_category', methods=['POST'])
 def add_category():
-    # 모델에 맞게 'name' 필드만 추가 (email 제거)
-    new_category = Category(name="sample_category")  # email 필드 제거
+    new_category = Category(name="sample_category")
     db.session.add(new_category)
     db.session.commit()
     return jsonify({"message": "Category added!", "category_id": new_category.id})

@@ -1,10 +1,10 @@
 from flask import Blueprint, render_template
 from models import User
 
-# Blueprint 생성 (이름을 view_users_bp로 변경)
+# Blueprint 생성
 view_users_bp = Blueprint('view_users', __name__)
 
-# /get_users 라우트 (사용자 목록을 HTML로 렌더링)
+# /get_users 라우트
 @view_users_bp.route('/views_get_users')
 def get_users():
     # DB에서 모든 User 조회

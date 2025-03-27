@@ -1,14 +1,13 @@
 from flask import Blueprint, jsonify, request
 from models import Product, db
 
-# Blueprint 생성 (이름을 route_products_bp로 변경)
+# Blueprint 생성
 route_products_bp = Blueprint('route_products', __name__)
 
 # 제품 추가 (POST)
 @route_products_bp.route('/add_product', methods=['POST'])
 def add_product():
-    # 모델에 맞게 'name' 필드만 추가 (productname을 name으로 변경)
-    new_product = Product(name="sample_product", price=100.0)  # email 필드 제거, price 필드 추가
+    new_product = Product(name="sample_product", price=100.0)
     db.session.add(new_product)
     db.session.commit()
     return jsonify({"message": "Product added!", "product_id": new_product.id})
