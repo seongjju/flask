@@ -1,3 +1,16 @@
 myproject/
 
 .env
+
+
+# Ignore virtual environment
+.venv/
+
+# Ignore SQLite database
+test.db
+
+# Ignore Python cache files
+__pycache__/
+
+# Ignore JetBrains IDE settings
+.idea/
