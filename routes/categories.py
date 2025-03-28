@@ -26,6 +26,7 @@ def update_category(category_id):
     # 요청에서 JSON 데이터를 가져옴
     data = request.get_json()
 
+
     # 카테고리 ID로 해당 카테고리를 찾음
     category = Category.query.get_or_404(category_id)
 

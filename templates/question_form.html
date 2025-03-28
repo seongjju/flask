@@ -1,0 +1,28 @@
+<!-- question_form.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h5 class="my-3 border-bottom pb-2">질문 올리기</h5>
+    <form method="post" class="my-3">
+        {{ form.csrf_token }}  <!-- CSRF 보호 토큰 -->
+
+        <div class="form-group">
+            {{ form.subject.label }}  <!-- 제목 라벨 -->
+            {{ form.subject(class="form-control") }}  <!-- 제목 입력 필드 -->
+        </div>
+
+        <div class="form-group">
+            {{ form.content.label }}  <!-- 내용 라벨 -->
+            {{ form.content(class="form-control") }}  <!-- 내용 입력 필드 -->
+        </div>
+
+        <div class="form-group">
+            {{ form.user_id.label }}  <!-- 사용자 ID 라벨 -->
+            {{ form.user_id(class="form-control") }}  <!-- 사용자 ID 입력 필드 -->
+        </div>
+
+        <button type="submit" class="btn btn-primary">저장</button>
+    </form>
+</div>
+{% endblock %}

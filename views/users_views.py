@@ -5,6 +5,7 @@ from models import User
 view_users_bp = Blueprint('view_users', __name__)
 
 # /get_users 라우트
+
 @view_users_bp.route('/views_get_users')
 def get_users():
     # DB에서 모든 User 조회

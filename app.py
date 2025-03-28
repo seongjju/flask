@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 from routes.categories import route_categories_bp
 from routes.products import route_products_bp
 from routes.users import route_users_bp
+from views.board_views import board_bp
 from views.categories_views import view_categories_bp
 from views.products_views import view_products_bp
 from views.users_views import view_users_bp
@@ -31,6 +32,9 @@ app.register_blueprint(route_categories_bp)
 app.register_blueprint(view_products_bp)
 app.register_blueprint(view_users_bp)
 app.register_blueprint(view_categories_bp)
+
+app.register_blueprint(board_bp, url_prefix='/board')
+
 
 # 기본 루트 경로 추가 (index.html 렌더링)
 @app.route('/')

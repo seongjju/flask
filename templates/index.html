@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-</head>
-<body>
-    <h1>Welcome to the Home Page</h1>
+{% extends 'base.html' %}
+
+{% block title %}Home - Flask App{% endblock %}
+
+{% block content %}
+    <h1>Welcome to Flask App</h1>
     <p>Click below to see the categories, products, or users:</p>
     <ul>
-        <li><a href="/get_categories">View Categories</a></li>
-        <li><a href="/get_products">View Products</a></li>
-        <li><a href="/get_users">View Users</a></li>
+        <li><a href="{{ url_for('view_categories.get_categories') }}">View Categories</a></li>
+        <li><a href="{{ url_for('view_products.get_products') }}">View Products</a></li>
+        <li><a href="{{ url_for('view_users.get_users') }}">View Users</a></li>
     </ul>
-</body>
-</html>
+{% endblock %}

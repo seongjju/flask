@@ -43,6 +43,7 @@ def update_user(user_id):
 
 # 사용자 삭제 (DELETE)
 @route_users_bp.route('/delete_user/<int:user_id>', methods=['DELETE'])
+
 def delete_user(user_id):
     user = User.query.get_or_404(user_id)
     db.session.delete(user)
