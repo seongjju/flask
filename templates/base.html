@@ -5,27 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Flask App{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        /* body 전체를 flexbox로 설정 */
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh; /* 전체 화면 높이 */
-        }
+<style>
+    /* 전체 body 스타일 수정 */
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        padding: 0; /* body 내부 여백 제거 */
+    }
 
-        /* 콘텐츠 영역 */
-        .container {
-            flex: 1; /* 남는 공간을 모두 차지하게 설정 */
-        }
+    /* 콘텐츠 영역과 플래시 메시지 여백을 추가로 조정 */
+    .container {
+        flex: 1;
+        padding: 0 10px; /* 좌우 여백 추가하여 여백 문제 해결 */
+    }
 
-        /* 푸터 고정 */
-        footer {
-            background-color: #343a40;
-            color: white;
-            text-align: center;
-            padding: 10px;
+    /* 플래시 메시지 스타일 */
+    .alert {
+        margin-bottom: 5px;  /* 하단 여백 줄이기 */
+        padding: 5px 10px;   /* 패딩을 더 작게 설정 */
+        font-size: 12px;      /* 글자 크기 더 줄이기 */
+        line-height: 1.2;     /* 줄 간격을 좁게 설정 */
+    }
+
+    /* 플래시 메시지 컨테이너 스타일 */
+    .container.mt-3 {
+        padding-left: 0;
+        padding-right: 0;
+        margin-top: 0;
+        padding-top: 0;
+    }
+    /* 푸터 고정 */
+    footer {
+        background-color: #343a40;
+        color: white;
+        text-align: center;
+        padding: 10px;
+    }
+
+    /* 닫기 버튼 스타일 */
+    .alert-dismissible .close {
+        padding: 0.25rem 0.75rem;  /* 닫기 버튼 크기 조정 */
+        color: inherit;  /* 닫기 버튼 색상 기본값 유지 */
+        background: none;  /* 배경 없애기 */
+        border: none;  /* 테두리 없애기 */
+    }
+
+    /* 모바일에서도 알림 메시지가 잘 보이도록 조정 */
+    @media (max-width: 576px) {
+        .alert {
+            font-size: 12px; /* 작은 화면에서는 글자 크기를 더 작게 설정 */
         }
-    </style>
+    }
+</style>
 </head>
 <body>
     <!-- 네비게이션 바 -->
@@ -34,8 +66,27 @@
         <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link" href="{{ url_for('board.create') }}">질문 등록</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ url_for('board.list_questions') }}">질문 목록</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.signup') }}">회원가입</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.login') }}">로그인</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.logout') }}">로그아웃</a></li>
         </ul>
     </nav>
+
+    <!-- 플래시 메시지 출력 -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="container mt-3">
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
 
     <!-- 콘텐츠 영역 -->
     <div class="container">
@@ -46,5 +97,10 @@
     <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2025 Flask App</p>
     </footer>
+
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

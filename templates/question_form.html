@@ -1,4 +1,3 @@
-<!-- question_form.html -->
 {% extends 'base.html' %}
 
 {% block content %}
@@ -15,11 +14,6 @@
         <div class="form-group">
             {{ form.content.label }}  <!-- 내용 라벨 -->
             {{ form.content(class="form-control") }}  <!-- 내용 입력 필드 -->
-        </div>
-
-        <div class="form-group">
-            {{ form.user_id.label }}  <!-- 사용자 ID 라벨 -->
-            {{ form.user_id(class="form-control") }}  <!-- 사용자 ID 입력 필드 -->
         </div>
 
         <button type="submit" class="btn btn-primary">저장</button>
